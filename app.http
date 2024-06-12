@@ -8,17 +8,17 @@ Content-Type: application/json
 
 {
     "name": "john",
-    "contact_phone": "11111111",
+    "contact_phone": "0112177489",
     "phone_verified":false,
-    "email": "john@example.com",
+    "email": "johnbradill@example.com",
     "email_verified": true,
-    "confirmation_code": "password123",
-    "password": "123"
+    "confirmation_code": "6789",
+    "password": "x3h3y8"
 
 }
 
 ###
-PUT  http://localhost:8000/api/users/6
+PUT  http://localhost:8000/api/users/
 Content-Type: application/json
 
 {
@@ -33,7 +33,7 @@ Content-Type: application/json
 }
 
 ###
-DELETE   http://localhost:8000/api/users/6
+DELETE   http://localhost:8000/api/users/1
 Content-Type: application/json
 
 {
@@ -48,31 +48,30 @@ Content-Type: application/json
 }
 
 ###
-GET  http://localhost:8000/api/restaurants/1
+GET  http://localhost:8000/api/restaurants/2
 
 ###
 
-POST   http://localhost:8000/api/restaurants
+POST   http://localhost:8000/api/restaurants/2
 Content-Type: application/json
 
 
 {
-  "name": "Krusty Crub",
-  "street_address": "Main St",
-  "zip_code": "00008",
-  "city_id": 4
+  "name": "Chez Panisse",
+  "street_address": "2436",
+  "zip_code": "9001",
+  "city_id": 2
 }
 ###
 
-PUT    http://localhost:8000/api/restaurants/6
+PUT    http://localhost:8000/api/restaurants/2
 Content-Type: application/json
 
-
 {
-  "name": "Krusty Crub",
-  "street_address": "Main St",
-  "zip_code": "00008",
-  "city_id": 4
+  "name": "Chez Panisse",
+  "street_address": "2435",
+  "zip_code": "9001",
+  "city_id": 2
 }
 ###
 
@@ -81,10 +80,10 @@ Content-Type: application/json
 
 
 {
-  "name": "Krusty Crub",
-  "street_address": "Main St",
-  "zip_code": "00008",
-  "city_id": 4
+  "name": "Chez Panisse",
+  "street_address": "2435",
+  "zip_code": "9001",
+  "city_id": 2
 }
 
 #states
@@ -97,8 +96,9 @@ Content-Type: application/json
 
 
 {
-  "name": "Manhattan",
-  "code": "MH"
+  "id":"2",
+  "name": "Western-Kenya",
+  "code": "254"
 }
 
 ###

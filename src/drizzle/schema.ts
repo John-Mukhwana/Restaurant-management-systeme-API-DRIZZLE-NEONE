@@ -1,7 +1,8 @@
 import { pgTable, serial, text, integer, boolean, numeric, timestamp, primaryKey, foreignKey } from 'drizzle-orm/pg-core';
 import {relations} from 'drizzle-orm';
 import { Many } from 'drizzle-orm';
-
+import { varchar } from 'drizzle-orm/mysql-core';
+import { pgEnum } from 'drizzle-orm/pg-core';
 
 // Restaurant table
 export const restaurant = pgTable('restaurant', {
@@ -288,6 +289,30 @@ export const state = pgTable('state', {
 export const stateRelations = relations(state, ({ many }) => ({
     cities: many(city),
 }));
+
+const roleEnum = pgEnum("role",["admin","user"])
+
+export const AuthOnUsersTable = pgTable('auth_on_users', {
+    id: serial('id').primaryKey(),
+    userId: integer('user_id').notNull().references(() => users.id, { onDelete: "cascade" }),
+    password: text("password"),
+    username: text("name",),
+    role: roleEnum ("role").default("user")
+});
+
+export const authOnUsersRelations = relations(AuthOnUsersTable, ({ one }) => ({
+    user:one(users, {
+        fields: [AuthOnUsersTable.userId],
+        references: [users.id],
+    })
+}));
+
+
+
+
+
+
+
 
 // Types
 export type TIUser = typeof users.$inferInsert;
