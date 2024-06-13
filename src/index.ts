@@ -21,6 +21,7 @@ import { statusRouter } from "./status-catalog/status-routes"
 import { commentRouter } from "./comments/comments-routers"
 import { categoryRouter } from "./category/category.routers"
 import { ownersRouter } from "./restaurant-owners/owners.routers";
+import { authRouter } from "./Auth/Auth.router";
 
 
 const app = new Hono().basePath("/api");
@@ -59,9 +60,11 @@ app.route("/", statusRouter);
 app.route("/", commentRouter);
 app.route("/", categoryRouter);
 app.route("/", ownersRouter);
+app.route("/", authRouter);
 
 serve({
   fetch: app.fetch,
   port: Number(process.env.PORT) || 3000,
 });
 console.log(`Server is running on port ${process.env.PORT}`);
+console.log(`Routes registered:`, app.routes);

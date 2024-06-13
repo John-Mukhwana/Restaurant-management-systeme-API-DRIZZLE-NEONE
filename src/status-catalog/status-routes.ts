@@ -6,11 +6,11 @@ import { status_catalogSchema } from "../validator";
 export const statusRouter = new Hono();
 
 // Get a single state by ID: api/states/1
-statusRouter.get("/states/:id", getService);
+statusRouter.get("/status_catalog/:id", getService);
 
 // Create a state
 statusRouter.post(
-  "/states",
+  "/status_catalog",
   zValidator("json", status_catalogSchema, (result, c) => {
     if (!result.success) {
       return c.json(result.error, 400);
@@ -20,7 +20,7 @@ statusRouter.post(
 );
 
 // Update a state by ID
-statusRouter.put("/states/:id", updateService);
+statusRouter.put("/status_catalog/:id", updateService);
 
 // Delete a state by ID
-statusRouter.delete("/states/:id", deleteService);
+statusRouter.delete("/status_catalog/:id", deleteService);

@@ -10,12 +10,12 @@ export const getServiceCatalog = async (id: number): Promise<TSStatus | undefine
 
 export const createServiceCatalog = async (data:TIStatus) => {
     await db.insert(status_catalog).values(data);
-    return "State created successfully";
+    return "Status created successfully";
 };
 
 export const updateServiceCatalog = async (id: number, data:TIStatus) => {
     await db.update(status_catalog).set(data).where(eq(status_catalog.id, id));
-    return "State updated successfully";
+    return "Status updated successfully";
 };
 
 export const deleteStatusCatalog = async (id: number) => {

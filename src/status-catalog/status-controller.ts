@@ -1,7 +1,7 @@
 import { Context } from "hono";
 import { getServiceCatalog, updateServiceCatalog, deleteStatusCatalog, createServiceCatalog} from "./status-services"
 
-// Get state by ID
+// Get status catalog  by ID
 export const getService = async (c: Context) => {
     try {
       const id = parseInt(c.req.param("id"));
@@ -18,13 +18,13 @@ export const getService = async (c: Context) => {
     }
   };
   
-  // Create state
+  // Create status catalog 
   export const createService = async (c: Context) => {
     try {
       const data = await c.req.json();
       const createdMsg = await createServiceCatalog(data);
   
-      if (!createdMsg) return c.text("State not created", 500);
+      if (!createdMsg) return c.text("Status  not created", 500);
       return c.json({ msg: createdMsg }, 201);
     } catch (error: any) {
       console.error(error?.message);
@@ -32,7 +32,7 @@ export const getService = async (c: Context) => {
     }
   };
   
-  // Update state by ID
+  // Update status catalog  by ID
   export const updateService = async (c: Context) => {
     try {
       const id = parseInt(c.req.param("id"));
@@ -41,7 +41,7 @@ export const getService = async (c: Context) => {
       const data = await c.req.json();
       const updatedMsg = await updateServiceCatalog (id, data);
   
-      if (!updatedMsg) return c.text("State not updated", 404);
+      if (!updatedMsg) return c.text("Status catalog not updated", 404);
       return c.json({ msg: updatedMsg }, 200);
     } catch (error: any) {
       console.error(error?.message);
@@ -49,7 +49,7 @@ export const getService = async (c: Context) => {
     }
   };
   
-  // Delete state by ID
+  // Delete status catalog  by ID
   export const deleteService = async (c: Context) => {
     try {
       const id = parseInt(c.req.param("id"));

@@ -1,8 +1,6 @@
-import { pgTable, serial, text, integer, boolean, numeric, timestamp, primaryKey, foreignKey } from 'drizzle-orm/pg-core';
+import { pgTable, serial, text, integer, boolean, numeric, timestamp, primaryKey, foreignKey ,pgEnum,varchar} from 'drizzle-orm/pg-core';
 import {relations} from 'drizzle-orm';
-import { Many } from 'drizzle-orm';
-import { varchar } from 'drizzle-orm/mysql-core';
-import { pgEnum } from 'drizzle-orm/pg-core';
+
 
 // Restaurant table
 export const restaurant = pgTable('restaurant', {
@@ -175,7 +173,7 @@ export const driver = pgTable('driver', {
     id: serial('id').primaryKey(),
     car_make: text('car_make').notNull(),
     car_model: text('car_model').notNull(),
-    car_year: integer('car_year').notNull(),
+    car_year: integer('car_year'),
     user_id: integer('user_id').notNull().references(() => users.id, { onDelete: "cascade" }),
     online: boolean('online').notNull(),
     delivering: boolean('delivering').notNull(),
@@ -290,20 +288,22 @@ export const stateRelations = relations(state, ({ many }) => ({
     cities: many(city),
 }));
 
-const roleEnum = pgEnum("role",["admin","user"])
 
-export const AuthOnUsersTable = pgTable('auth_on_users', {
-    id: serial('id').primaryKey(),
-    userId: integer('user_id').notNull().references(() => users.id, { onDelete: "cascade" }),
-    password: text("password"),
-    username: text("name",),
-    role: roleEnum ("role").default("user")
+// AuthOnUsers table /Registration table
+export const roleEnum = pgEnum("role", ["admin", "user"])
+
+export const AuthOnUsersTable = pgTable("auth_on_users", {
+    id: serial("id").primaryKey(),
+    userId: integer("user_id").notNull().references(() => users.id, { onDelete: "cascade" }),
+    password: varchar("password", { length: 100 }),
+    username: varchar("username", { length: 100 }),
+    role: roleEnum("role").default("user")
 });
 
-export const authOnUsersRelations = relations(AuthOnUsersTable, ({ one }) => ({
-    user:one(users, {
+export const AuthOnUsersRelations = relations(AuthOnUsersTable, ({ one }) => ({
+    user: one(users, {
         fields: [AuthOnUsersTable.userId],
-        references: [users.id],
+        references: [users.id]
     })
 }));
 
@@ -315,6 +315,7 @@ export const authOnUsersRelations = relations(AuthOnUsersTable, ({ one }) => ({
 
 
 // Types
+
 export type TIUser = typeof users.$inferInsert;
 export type TSUser = typeof users.$inferSelect;
 export type TIRestaurant = typeof restaurant.$inferInsert;
@@ -343,3 +344,5 @@ export type TIRestaurantOwner = typeof restaurant_owner.$inferInsert;
 export type TSRestaurantOwner = typeof restaurant_owner.$inferSelect;
 export type TICategory = typeof category.$inferInsert;
 export type TSCategory = typeof  category.$inferSelect;
+export type TIAuthOnUser = typeof AuthOnUsersTable.$inferInsert;
+export type TSAuthOnUser = typeof AuthOnUsersTable.$inferSelect;

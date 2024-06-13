@@ -104,3 +104,15 @@ export const addressSchema = z.object({
     user_id: z.number(),
     city_id: z.number(),
 })
+
+export const loginUserSchema = z.object({
+    userSchema: z.string(),
+    password: z.string(),
+});
+
+export const registerUserSchema = z.object({
+    userId: z.number(),
+    username: z.string(),
+    password: z.string(),
+    role: z.string().optional(),
+})

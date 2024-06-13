@@ -1,16 +1,42 @@
 #users
 ###
-GET  http://localhost:8000/api/users/1
+GET  http://localhost:8000/api/users
+Authorization: Bearer eyJ
 
 ### 
-POST  http://localhost:8000/api/users
+POST http://localhost:8000/api/register
+Content-Type: application/json
+
+{ 
+  "userId":1,
+  
+    "name": "Zena Taaka Juma",
+    "username": "Bradley",
+    "contact_phone": "0745577489",
+    "phone_verified":false,
+    "email": "zenataaka@gmail.com",
+    "email_verified": true,
+    "confirmation_code": "8567",
+    "password": "Taaka341"
+}
+
+###
+POST http://localhost:8000/api/login
 Content-Type: application/json
 
 {
-    "name": "john",
+    "username": "Bradley",
+    "password": "Taaka341"
+}
+###
+PUT  http://localhost:8000/api/users/1
+Content-Type: application/json
+
+{
+    "name": "john bradill",
     "contact_phone": "0112177489",
     "phone_verified":false,
-    "email": "johnbradill@example.com",
+    "email": "johbradill67@gmail.com",
     "email_verified": true,
     "confirmation_code": "6789",
     "password": "x3h3y8"
@@ -18,45 +44,18 @@ Content-Type: application/json
 }
 
 ###
-PUT  http://localhost:8000/api/users/
-Content-Type: application/json
-
-{
-    "name": "johnte njoroge",
-    "contact_phone": "11111111",
-    "phone_verified":false,
-    "email": "john@example.com",
-    "email_verified": true,
-    "confirmation_code": "password123",
-    "password": "123"
-
-}
-
-###
-DELETE   http://localhost:8000/api/users/1
-Content-Type: application/json
-
-{
-    "name": "johnte njoroge",
-    "contact_phone": "11111111",
-    "phone_verified":false,
-    "email": "john@example.com",
-    "email_verified": true,
-    "confirmation_code": "password123",
-    "password": "123"
-
-}
+DELETE   http://localhost:8000/api/users/7
 
 ###
 GET  http://localhost:8000/api/restaurants/2
 
 ###
 
-POST   http://localhost:8000/api/restaurants/2
+POST   http://localhost:8000/api/restaurants
 Content-Type: application/json
 
 
-{
+{  "id": 2,
   "name": "Chez Panisse",
   "street_address": "2436",
   "zip_code": "9001",
@@ -75,20 +74,11 @@ Content-Type: application/json
 }
 ###
 
-DELETE     http://localhost:8000/api/restaurants/6
-Content-Type: application/json
-
-
-{
-  "name": "Chez Panisse",
-  "street_address": "2435",
-  "zip_code": "9001",
-  "city_id": 2
-}
+DELETE     http://localhost:8000/api/restaurants/2
 
 #states
 ###
-GET  http://localhost:8000/api/states/1
+GET  http://localhost:8000/api/states/2
 
 ###
 POST http://localhost:8000/api/states
@@ -102,28 +92,23 @@ Content-Type: application/json
 }
 
 ###
-PUT   http://localhost:8000/api/states/6
+PUT   http://localhost:8000/api/states/2
 Content-Type: application/json
 
 
 {
-  "name": "State of Manhattan ",
-  "code": "MH"
+  "id":"2",
+  "name": "WesternKenya",
+  "code": "254"
 }
 
 ###
-DELETE   http://localhost:8000/api/states/6
-Content-Type: application/json
+DELETE   http://localhost:8000/api/states/2
 
-
-{
-  "name": "State of Manhattan ",
-  "code": "MH"
-}
 
 # cities
 ###
-GET  http://localhost:8000/api/cities/1
+GET  http://localhost:8000/api/cities/
 
 
 
@@ -132,59 +117,58 @@ POST  http://localhost:8000/api/cities
 Content-Type: application/json
 
 
-{
-  "name": "Berlin",
+{  "id":"1",
+  "name": "Los Angeles",
   "state_id": 1
 }
 
 
 ###
-PUT  http://localhost:8000/api/cities/6
+PUT  http://localhost:8000/api/cities/4
 Content-Type: application/json
 
 
-{
-  "name": "Munich",
-  "state_id": 4
+{ "id":"3",
+  "name": "KachMega",
+  "state_id": 2
 }
 
 
 ###
-DELETE   http://localhost:8000/api/cities/6
+DELETE   http://localhost:8000/api/cities/1
 Content-Type: application/json
 
-
-{
-  "name": "Munich",
-  "state_id": 4
-}
 
 # Orders
 ###
 GET  http://localhost:8000/api/orders/1
 
 ###
+
 POST   http://localhost:8000/api/orders
 Content-Type: application/json
 
 {
-  "restaurant_id": 1,
-  "estimated_delivery_time": 2024-06-06 12:00:00,
-  "actual_delivery_time": 2024-06-06 12:30:00,
+  "id": 1,
+  "restaurant_id": 2,
+  "estimated_delivery_time": "2024-06-07T18:30:00.000Z",
+  "actual_delivery_time": "2024-06-06T18:50:00.000Z",
   "delivery_address_id": 1,
   "user_id": 1,
   "driver_id": 1,
-  "price": 25.99,
-  "discount": 5.00,
-  "final_price": 20.99,
-  "comment": "Extra ketchup"
+  "price": "90.00",
+  "discount": "10.00",
+  "final_price": "80.00",
+  "comment": "Delivered",
+  "created_at": "2024-06-12T13:55:08.223Z",
+  "updated_at": "2024-06-12T13:55:08.223Z"
 }
 
 ###
-PUT   http://localhost:8000/api/orders/6
+PUT   http://localhost:8000/api/orders/1
 Content-Type: application/json
 
-{
+{  "id": 1,
   "restaurant_id": 2,
   "estimated_delivery_time": "2024-06-07 18:30:00",
   "actual_delivery_time": "2024-06-06 18:50:00",
@@ -198,21 +182,8 @@ Content-Type: application/json
 }
 
 ###
-DELETE    http://localhost:8000/api/orders/6
-Content-Type: application/json
+DELETE    http://localhost:8000/api/orders/
 
-{
-  "restaurant_id": 2,
-  "estimated_delivery_time": 2024-06-07 18:30:00,
-  "actual_delivery_time": 2024-06-06 18:50:00,
-  "delivery_address_id": 2,
-  "user_id": 2,
-  "driver_id": 2,
-  "price": 32.99,
-  "discount": 0.00,
-  "final_price": 32.99,
-  "comment": "No onions"
-}
 
 # Order Menu Items
 ###
@@ -223,16 +194,16 @@ POST  http://localhost:8000/api/order_menu_items
 Content-Type: application/json
 
 {
-  "order_id": 1,
-  "menu_item_id": 1,
+  "order_id": 2,
+  "menu_item_id": 2,
   "quantity": 2,
-  "item_price": 10.99,
-  "price": 21.98,
-  "comment": "Extra spicy"
+  "item_price": 10,
+  "price": 25,
+  "comment": "very delicious"
 }
 
 ###
-PUT  http://localhost:8000/api/order_menu_items/6
+PUT  http://localhost:8000/api/order_menu_items/1
 Content-Type: application/json
 
 {
@@ -245,7 +216,7 @@ Content-Type: application/json
 }
 
 ###
-DELETE  http://localhost:8000/api/order_menu_items/6
+DELETE  http://localhost:8000/api/order_menu_items/1
 Content-Type: application/json
 
 {
@@ -271,7 +242,7 @@ Content-Type: application/json
 }
 
 ###
-PUT  http://localhost:8000/api/order_statuses/6
+PUT  http://localhost:8000/api/order_statuses/1
 Content-Type: application/json
 
 {
@@ -301,7 +272,7 @@ Content-Type: application/json
 }
 
 ###
-PUT  http://localhost:8000/api/status_catalogs/6
+PUT  http://localhost:8000/api/status_catalogs/
 Content-Type: application/json
 
 {
@@ -309,7 +280,7 @@ Content-Type: application/json
 }
 
 ###
-DELETE  http://localhost:8000/api/status_catalogs/6
+DELETE  http://localhost:8000/api/status_catalogs/
 Content-Type: application/json
 
 {
@@ -333,7 +304,7 @@ Content-Type: application/json
 }
 
 ###
-PUT  http://localhost:8000/api/comments/6
+PUT  http://localhost:8000/api/comments/1
 Content-Type: application/json
 
 {
@@ -345,7 +316,7 @@ Content-Type: application/json
 }
 
 ###
-DELETE  http://localhost:8000/api/comments/6
+DELETE  http://localhost:8000/api/comments/1
 Content-Type: application/json
 
 {
@@ -358,52 +329,52 @@ Content-Type: application/json
 
 # Categories
 ###
-GET  http://localhost:8000/api/categories/1
+GET  http://localhost:8000/api/categories/3
 
 ###
 POST  http://localhost:8000/api/categories
 Content-Type: application/json
 
-{
-  "name": "Appetizers"
+{  "id": 5,
+  "name": "Fried Meals"
 }
 
 ###
-PUT  http://localhost:8000/api/categories/6
+PUT  http://localhost:8000/api/categories/1
 Content-Type: application/json
 
 {
-  "name": "Main Course"
+  "name": "Soft Drinks"
 }
 
 ###
-DELETE  http://localhost:8000/api/categories/6
+DELETE  http://localhost:8000/api/categories/1
 Content-Type: application/json
-
-{
-  "name": "Main Course"
-}
+  
+  {
+    "name": "accesories"
+  }
 
 # Restaurant Owners
 ###
-GET  http://localhost:8000/api/restaurant_owners/1/1
+GET  http://localhost:8000/api/restaurant_owners/2
 
 ###
 POST  http://localhost:8000/api/restaurant_owners
 Content-Type: application/json
 
-{
-  "restaurant_id": 1,
+{ 
+  "restaurant_id": 2,
   "owner_id": 1
 }
 
 ###
-PUT  http://localhost:8000/api/restaurant_owners/1/1
+PUT  http://localhost:8000/api/restaurant_owners/2
 Content-Type: application/json
 
-{
+{ "id":"2",
   "restaurant_id": 1,
-  "owner_id": 1
+  "owner_id": 2
 }
 
 ###
@@ -424,39 +395,32 @@ POST  http://localhost:8000/api/addresses
 Content-Type: application/json
 
 {
-  "street_address_1": "123 Main St",
-  "street_address_2": "Apt 4B",
-  "zip_code": "10001",
-  "delivery_instructions": "Leave at front desk",
+  "id": 1,
+  "street_address_1": "2345",
+  "street_address_2": "2345 Los Angeles",
+  "zip_code": "1",
+  "delivery_instructions": "Deliver at the gate",
   "user_id": 1,
   "city_id": 1
 }
 
 ###
-PUT  http://localhost:8000/api/addresses/6
+PUT  http://localhost:8000/api/addresses/2
 Content-Type: application/json
 
-{
-  "street_address_1": "456 Elm St",
-  "street_address_2": "Suite 3A",
-  "zip_code": "10002",
-  "delivery_instructions": "Ring bell twice",
-  "user_id": 2,
+{  
+  "id": 2,
+  "street_address_1": "2435",
+  "street_address_2": "2435 San Diego",
+  "zip_code": "9001",
+  "delivery_instructions": "Deliver at the door",
+  "user_id": 1,
   "city_id": 2
 }
 
 ###
-DELETE  http://localhost:8000/api/addresses/6
-Content-Type: application/json
+DELETE  http://localhost:8000/api/addresses/1
 
-{
-  "street_address_1": "456 Elm St",
-  "street_address_2": "Suite 3A",
-  "zip_code": "10002",
-  "delivery_instructions": "Ring bell twice",
-  "user_id": 2,
-  "city_id": 2
-}
 
 # Drivers
 ###
@@ -466,40 +430,30 @@ GET  http://localhost:8000/api/drivers/1
 POST  http://localhost:8000/api/drivers
 Content-Type: application/json
 
-{
-  "car_make": "Toyota",
-  "car_model": "Corolla",
-  "car_year": 2020,
-  "user_id": 1,
-  "online": true,
-  "delivering": false
-}
-
-###
-PUT  http://localhost:8000/api/drivers/6
-Content-Type: application/json
-
-{
-  "car_make": "Honda",
-  "car_model": "Civic",
-  "car_year": 2019,
+{  "id": 1,
+  "car_make": "BMW",
+  "car_model": "G20",
+  "car_year": "2022",
   "user_id": 2,
   "online": false,
   "delivering": true
 }
 
 ###
-DELETE  http://localhost:8000/api/drivers/6
+PUT  http://localhost:8000/api/drivers/
 Content-Type: application/json
 
 {
-  "car_make": "Honda",
-  "car_model": "Civic",
-  "car_year": 2019,
+  "car_make": "BMW",
+  "car_model": "G20",
+  "car_year": 2022,
   "user_id": 2,
   "online": false,
   "delivering": true
 }
+
+###
+DELETE  http://localhost:8000/api/drivers/
 
 # Menu Items
 ###
@@ -509,40 +463,44 @@ GET  http://localhost:8000/api/menu_items/1
 POST  http://localhost:8000/api/menu_items
 Content-Type: application/json
 
-{
-  "name": "Burger",
+{ "id": 1,
+  "name": "piza",
   "restaurant_id": 1,
   "category_id": 1,
-  "description": "A delicious burger",
-  "ingredients": "Beef, Lettuce, Tomato, Bun",
-  "price": 9.99,
+  "description": "Italy Pizare",
+  "ingredients": "Beef, cassava, Tomato, meat",
+  "price": 90,
   "active": true
 }
 
 ###
-PUT  http://localhost:8000/api/menu_items/6
+PUT  http://localhost:8000/api/menu_items/1
 Content-Type: application/json
 
 {
-  "name": "Cheeseburger",
+  "name": "dry Tilapia ",
   "restaurant_id": 2,
   "category_id": 2,
-  "description": "A delicious cheeseburger",
-  "ingredients": "Beef, Cheese, Lettuce, Tomato, Bun",
+  "description": "Tilapia dry",
+  "ingredients": "tulapia,Lettuce, Tomato, onions",
   "price": 10.99,
   "active": true
 }
 
 ###
-DELETE  http://localhost:8000/api/menu_items/6
-Content-Type: application/json
+DELETE  http://localhost:8000/api/menu_items/1
 
-{
-  "name": "Cheeseburger",
-  "restaurant_id": 2,
-  "category_id": 2,
-  "description": "A delicious cheeseburger",
-  "ingredients": "Beef, Cheese, Lettuce, Tomato, Bun",
-  "price": 10.99,
-  "active": true
-}
+  
+  ###
+GET  http://localhost:8000/api/menu_items/1
+
+# ###
+# POST  http://localhost:8000/api/register
+# Content-Type: application/json
+
+# {  
+#     "userId":1,
+#     "email": "zenataaka@gmail.com",
+#     "password": "Taaka341",
+#     "role":"user"
+# }
