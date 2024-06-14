@@ -6,7 +6,7 @@ const db_1 = require("../drizzle/db");
 const drizzle_orm_1 = require("drizzle-orm");
 const createAuthUserService = async (user) => {
     await db_1.default.insert(schema_1.AuthOnUsersTable).values(user);
-    return "User created successfully";
+    return "User Registred successfully";
 };
 exports.createAuthUserService = createAuthUserService;
 const userLoginService = async (user) => {
@@ -21,8 +21,8 @@ const userLoginService = async (user) => {
             user: {
                 columns: {
                     name: true,
-                    contact_phone: true,
-                    email: true,
+                    phone_verified: true,
+                    password: true,
                     id: true
                 }
             }

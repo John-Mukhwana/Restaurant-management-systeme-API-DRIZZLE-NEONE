@@ -1,7 +1,7 @@
 #users
 ###
 GET  http://localhost:8000/api/users
-Authorization: Bearer eyJ
+Authorization:
 
 ### 
 POST http://localhost:8000/api/Auth/register
@@ -9,8 +9,8 @@ Content-Type: application/json
 
 { 
     "userId":1,
-    "username": "Bradley",
-    "password": "Taaka341",
+    "username": "John",
+    "password": "x3h3y8",
     "role":"user"
 }
 
@@ -19,9 +19,10 @@ POST http://localhost:8000/api/Auth/login
 Content-Type: application/json
 
 {
-    "username": "Bradley",
-    "password": "Taaka341"
+    "username": "John",
+    "password": "x3h3y8"    
 }
+
 ###
 PUT  http://localhost:8000/api/users/1
 Content-Type: application/json

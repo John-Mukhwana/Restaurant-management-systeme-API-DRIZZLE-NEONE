@@ -56,9 +56,10 @@ app.route("/", status_routes_1.statusRouter);
 app.route("/", comments_routers_1.commentRouter);
 app.route("/", category_routers_1.categoryRouter);
 app.route("/", owners_routers_1.ownersRouter);
-app.route("/", Auth_router_1.authRouter);
+app.route("/Auth", Auth_router_1.authRouter);
 (0, node_server_1.serve)({
     fetch: app.fetch,
     port: Number(process.env.PORT) || 3000,
 });
 console.log(`Server is running on port ${process.env.PORT}`);
+// console.log(`Routes registered:`, app.routes);

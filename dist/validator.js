@@ -91,7 +91,7 @@ exports.addressSchema = zod_1.z.object({
     city_id: zod_1.z.number(),
 });
 exports.loginUserSchema = zod_1.z.object({
-    email: zod_1.z.string().email(),
+    username: zod_1.z.string(),
     password: zod_1.z.string(),
 });
 exports.registerUserSchema = zod_1.z.object({

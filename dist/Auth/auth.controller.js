@@ -5,7 +5,6 @@ require("dotenv/config");
 const Auth_services_1 = require("./Auth.services");
 const bycrpt = require("bcrypt");
 const jwt_1 = require("hono/jwt");
-//Register User
 const registerUser = async (c) => {
     try {
         const user = await c.req.json();

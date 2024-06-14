@@ -2,12 +2,10 @@ import "dotenv/config";
 import { Context } from "hono";
 import { createAuthUserService, userLoginService } from "./Auth.services";
 import * as bycrpt from "bcrypt";
-import {jwt} from "hono/jwt";
 import { sign } from "hono/jwt";
-import { registerUserSchema, loginUserSchema } from "../validator";
-import { users } from '../drizzle/schema';
 
-//Register User
+
+
 export const registerUser = async (c: Context) => {
     try {
         const user = await c.req.json();
@@ -23,14 +21,12 @@ export const registerUser = async (c: Context) => {
     }
 
 }
-
 export const loginUser = async (c: Context) => {
 
     try {
         const user = await c.req.json();
         //check user exist
         const userExist = await userLoginService(user);
-        console.log(userExist)
         if (userExist === null) return c.json({ error: "User not found" }, 404);  // not found         
         const userMatch = await bycrpt.compare(user.password, userExist?.password as string);
         if (!userMatch) {
@@ -43,10 +39,10 @@ export const loginUser = async (c: Context) => {
                 exp: Math.floor(Date.now() / 1000) + (60 * 180)  // 3 hour  => SESSION EXPIRATION
             }
             let secret = process.env.JWT_SECRET as string;  // secret key
-            const token = await  sign(payload, secret);   // create a JWT token
+            const token = await sign(payload, secret);   // create a JWT token
             let user = userExist?.user;
             let role = userExist?.role;
-            return c.json({ token, users: { role, ...user } }, 200);  // return token and user details
+            return c.json({ token, user: { role, ...user } }, 200);  // return token and user details
         }
     } catch (error: any) {
         return c.json({ error: error?.message }, 400)
