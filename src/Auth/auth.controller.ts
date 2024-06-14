@@ -5,6 +5,7 @@ import * as bycrpt from "bcrypt";
 import {jwt} from "hono/jwt";
 import { sign } from "hono/jwt";
 import { registerUserSchema, loginUserSchema } from "../validator";
+import { users } from '../drizzle/schema';
 
 //Register User
 export const registerUser = async (c: Context) => {
@@ -45,7 +46,7 @@ export const loginUser = async (c: Context) => {
             const token = await  sign(payload, secret);   // create a JWT token
             let user = userExist?.user;
             let role = userExist?.role;
-            return c.json({ token, user: { role, ...user } }, 200);  // return token and user details
+            return c.json({ token, users: { role, ...user } }, 200);  // return token and user details
         }
     } catch (error: any) {
         return c.json({ error: error?.message }, 400)

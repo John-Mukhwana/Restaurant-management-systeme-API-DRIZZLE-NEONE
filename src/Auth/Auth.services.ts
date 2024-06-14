@@ -1,12 +1,10 @@
-
-import {AuthOnUsersTable,TIAuthOnUser,TSAuthOnUser} from '../drizzle/schema';
+import { AuthOnUsersTable, TIAuthOnUser, TSAuthOnUser, users } from '../drizzle/schema';
 import db from "../drizzle/db";
-import {sql} from 'drizzle-orm';
-
+import { sql } from "drizzle-orm";
 
 export const createAuthUserService = async (user: TIAuthOnUser): Promise<string | null> => {
     await db.insert(AuthOnUsersTable).values(user)
-    return "User created successfully";
+    return "User registered successfully";
 }
 
 export const userLoginService = async (user: TSAuthOnUser) => {
@@ -21,7 +19,7 @@ export const userLoginService = async (user: TSAuthOnUser) => {
             user: {
                 columns: {
                     name: true,
-                    contact_phone: true,
+                    password: true,
                     email: true,
                     id: true
                 }

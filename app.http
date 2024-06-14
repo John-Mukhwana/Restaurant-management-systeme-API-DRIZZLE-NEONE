@@ -4,24 +4,18 @@ GET  http://localhost:8000/api/users
 Authorization: Bearer eyJ
 
 ### 
-POST http://localhost:8000/api/register
+POST http://localhost:8000/api/Auth/register
 Content-Type: application/json
 
 { 
-  "userId":1,
-  
-    "name": "Zena Taaka Juma",
+    "userId":1,
     "username": "Bradley",
-    "contact_phone": "0745577489",
-    "phone_verified":false,
-    "email": "zenataaka@gmail.com",
-    "email_verified": true,
-    "confirmation_code": "8567",
-    "password": "Taaka341"
+    "password": "Taaka341",
+    "role":"user"
 }
 
 ###
-POST http://localhost:8000/api/login
+POST http://localhost:8000/api/Auth/login
 Content-Type: application/json
 
 {

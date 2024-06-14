@@ -106,7 +106,7 @@ export const addressSchema = z.object({
 })
 
 export const loginUserSchema = z.object({
-    userSchema: z.string(),
+    username: z.string(),
     password: z.string(),
 });
 

@@ -60,11 +60,11 @@ app.route("/", statusRouter);
 app.route("/", commentRouter);
 app.route("/", categoryRouter);
 app.route("/", ownersRouter);
-app.route("/", authRouter);
+app.route("/Auth", authRouter);
 
 serve({
   fetch: app.fetch,
   port: Number(process.env.PORT) || 3000,
 });
 console.log(`Server is running on port ${process.env.PORT}`);
-console.log(`Routes registered:`, app.routes);
+// console.log(`Routes registered:`, app.routes);
