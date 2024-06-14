@@ -51,6 +51,9 @@ importers:
       drizzle-kit:
         specifier: ^0.22.2
         version: 0.22.2
+      tsc:
+        specifier: ^2.0.4
+        version: 2.0.4
       tsx:
         specifier: ^4.7.1
         version: 4.11.2
@@ -937,6 +940,10 @@ packages:
   tr46@0.0.3:
     resolution: {integrity: sha512-N3WMsuqV66lT30CrXNbEjx4GEwlow3v6rr4mCcv6prnfwhS01rkgyFdjPNBYd9br7LpXV1+Emh01fHnq2Gdgrw==}
 
+  tsc@2.0.4:
+    resolution: {integrity: sha512-fzoSieZI5KKJVBYGvwbVZs/J5za84f2lSTLPYf6AGiIf43tZ3GNrI1QzTLcjtyDDP4aLxd46RTZq1nQxe7+k5Q==}
+    hasBin: true
+
   tsx@4.11.2:
     resolution: {integrity: sha512-V5DL5v1BuItjsQ2FN9+4OjR7n5cr8hSgN+VGmm/fd2/0cgQdBIWHcQ3bFYm/5ZTmyxkTDBUIaRuW2divgfPe0A==}
     engines: {node: '>=18.0.0'}
@@ -1640,6 +1647,8 @@ snapshots:
       bintrees: 1.0.2
 
   tr46@0.0.3: {}
+
+  tsc@2.0.4: {}
 
   tsx@4.11.2:
     dependencies:

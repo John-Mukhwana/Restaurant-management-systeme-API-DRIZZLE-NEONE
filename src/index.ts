@@ -22,6 +22,7 @@ import { commentRouter } from "./comments/comments-routers"
 import { categoryRouter } from "./category/category.routers"
 import { ownersRouter } from "./restaurant-owners/owners.routers";
 import { authRouter } from "./Auth/Auth.router";
+import { html, raw } from 'hono/html'
 
 
 const app = new Hono().basePath("/api");
@@ -44,6 +45,30 @@ app.get("/timeout", async (c) => {
   return c.text("data after 5 seconds", 200);
 });
 app.get("/metrics", printMetrics);
+// default route
+app.get('/', (c) => {
+  return c.html(
+    html`
+   <h1>Welcome to the social media API</h1>
+    <ul>
+      <li><b>message:</b> Welcome social media API, </li>
+      <li><b>version:</b> 1.0.0,</li>
+      <li><b>docs:</b> Please feel free to query the API 📢😂😂,</li>
+      </ul>
+ </p>
+    `)
+})
+app.get('/ok', (c) => {
+  return c.text('The server is running📢😏😏😏!')
+})
+app.get('/timeout', async (c) => {
+  await new Promise((resolve) => setTimeout(resolve, 11000))
+  return c.text("data after 5 seconds", 200)
+})
+app.get('/metrics', printMetrics)
+app.notFound((c) => {
+  return c.text('Route not found💀', 404)
+})
 
 // custom routes
 app.route("/", restaurantRouter);
