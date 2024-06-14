@@ -5,6 +5,7 @@ import { registerUserSchema, loginUserSchema } from '../validator'
 
 export const authRouter = new Hono();
 
+
 authRouter.post('/register', zValidator('json', registerUserSchema, (result, c) => {
     if (!result.success) {
         return c.json(result.error, 400)
@@ -16,18 +17,3 @@ authRouter.post('/login', zValidator('json', loginUserSchema, (result, c) => {
         return c.json(result.error, 400)
     }
 }), loginUser)
-
-// export const authRouter = new Hono();
-
-
-// authRouter.post('/register', zValidator('json', registerUserSchema, (result, c) => {
-//     if (!result.success) {
-//         return c.json(result.error, 400)
-//     }
-// }), registerUser)
-
-// authRouter.post('/login', zValidator('json', loginUserSchema, (result, c) => {
-//     if (!result.success) {
-//         return c.json(result.error, 400)
-//     }
-// }), loginUser)

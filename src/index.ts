@@ -49,11 +49,12 @@ app.get("/metrics", printMetrics);
 app.get('/', (c) => {
   return c.html(
     html`
-   <h1>Welcome to the social media API</h1>
+   <h3>Hi there </h3  ><br>
+   <h1>Am JOHN BRADILL MUKHWANA</h1>
     <ul>
-      <li><b>message:</b> Welcome social media API, </li>
+      <li><b>message:</b> Welcome to my Restaurant API, </li>
       <li><b>version:</b> 1.0.0,</li>
-      <li><b>docs:</b> Please feel free to query the API 📢😂😂,</li>
+      <li><b>docs:</b> Please feel free to debug my API 📢😂😂,</li>
       </ul>
  </p>
     `)
