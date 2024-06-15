@@ -20,6 +20,7 @@
     "drizzle-orm": "^0.31.1",
     "hono": "^4.4.2",
     "prom-client": "^15.1.2",
+    "typescritp": "^1.0.0",
     "zod": "^3.23.8"
   },
   "devDependencies": {
